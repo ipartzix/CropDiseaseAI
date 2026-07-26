@@ -1,16 +1,16 @@
-# 🌱 Crop Health Sensor Dataset
+# Environment Health Sensor Dataset
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Dataset-24K%2B%20Records-green">
+  <img src="https://img.shields.io/badge/Dataset-212,019%2B%20Records-green">
   <img src="https://img.shields.io/badge/Task-Binary%20Classification-blue">
   <img src="https://img.shields.io/badge/Domain-Smart%20Agriculture-orange">
 </p>
 
 ## Overview
 
-The **Crop Health Sensor Dataset** is a processed agricultural sensor dataset created for the **IoT Based Crop Disease Detection System for Smart Agriculture** project.
+The **Environment Health Sensor Dataset** is a processed agricultural sensor dataset created for the **IoT Based Crop Disease Detection System for Smart Agriculture** project.
 
-This dataset is designed for machine learning models that analyze environmental conditions and predict crop health status. It contains approximately **24,000 sensor records** collected from crop environmental parameters.
+This dataset is designed for machine learning models that analyze environmental conditions and predict crop health status. It contains approximately **212,019 sensor records** collected from crop environmental parameters.
 
 The dataset includes three input features:
 
@@ -20,7 +20,7 @@ The dataset includes three input features:
 
 and one target classification label:
 
-- Crop_Health_Label
+- Environment_Health_Label
 
 The objective of this dataset is to enable smart farming applications by using machine learning techniques for automatic crop health monitoring.
 
@@ -39,8 +39,9 @@ The processed dataset is publicly available on Hugging Face:
 ## Original Dataset Source
 
 Original Dataset:
-
+```
 https://www.kaggle.com/datasets/datasetengineer/crop-health-and-environmental-stress-dataset
+```
 
 The original dataset was processed and prepared for integration into an IoT-based crop monitoring and prediction system.
 
@@ -53,11 +54,11 @@ The original dataset was processed and prepared for integration into an IoT-base
 | Temperature | Environmental temperature measurement |
 | Humidity | Atmospheric humidity measurement |
 | Soil_Moisture | Soil water content measurement |
-| Crop_Health_Label | Crop health classification output |
+| Environment_Health_Label | Environment health classification output |
 
 Dataset Information:
 
-- Total Samples: ~24,000
+- Total Samples: 212,019
 - Data Format: CSV
 - Input Features: 3
 - Target Feature: 1
@@ -76,9 +77,9 @@ Crop_Health_Label
 Label Mapping:
 
 ```
-0 → Unhealthy Crop
+0 → Unhealthy Environment
 
-1 → Healthy Crop
+1 → Healthy Environment
 ```
 
 ---
@@ -98,7 +99,7 @@ Soil_Moisture
 Output:
 
 ```text
-Crop_Health_Label
+Environment_Health_Label
 ```
 
 The model learns the relationship between environmental conditions and crop health to predict whether a crop is healthy or under stress.
@@ -151,9 +152,9 @@ Model:
 Output:
 
 ```
-Healthy Crop
+Healthy Environment
 or
-Unhealthy Crop
+Unhealthy Environment
 ```
 
 ---
@@ -176,7 +177,7 @@ Feature Scaling
 Machine Learning Model
       |
       ↓
-Crop Health Prediction
+Environment Health Prediction
 ```
 
 ---
