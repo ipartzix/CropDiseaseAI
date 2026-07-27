@@ -1,0 +1,25 @@
+                                            precision    recall  f1-score   support
+
+                Corn_(Maize)___Common_Rust     1.0000    1.0000    1.0000       179
+Corn_(Maize)___Gray_Leaf_Spot_(Cercospora)     0.9846    0.8312    0.9014        77
+                    Corn_(Maize)___Healthy     0.9777    1.0000    0.9887       175
+                  Corn_(Maize)___Leaf_Spot     0.8303    0.9526    0.8873       190
+         Corn_(Maize)___Maize_Streak_Virus     0.9200    0.7616    0.8333       151
+       Corn_(Maize)___Northern_Leaf_Blight     0.9068    0.9865    0.9450       148
+                     Potato___Early_Blight     1.0000    0.9933    0.9967       150
+                          Potato___Healthy     0.9932    1.0000    0.9966       146
+                      Potato___Late_Blight     1.0000    0.9933    0.9967       150
+                         Rice___Brown_Spot     0.8446    0.8956    0.8693       182
+                            Rice___Healthy     0.8659    0.9638    0.9122       221
+                         Rice___Leaf_Blast     0.8716    0.6597    0.7510       144
+                   Tomato___Bacterial_Spot     1.0000    0.9969    0.9984       320
+                     Tomato___Early_Blight     0.9804    1.0000    0.9901       150
+                          Tomato___Healthy     1.0000    0.9958    0.9979       239
+                      Tomato___Late_Blight     0.9965    0.9965    0.9965       287
+                        Wheat___Brown_Rust     1.0000    0.9380    0.9680       129
+                           Wheat___Healthy     0.9938    0.9938    0.9938       162
+                       Wheat___Yellow_Rust     0.9924    0.9924    0.9924       132
+
+                                  accuracy                         0.9547      3332
+                                 macro avg     0.9557    0.9448    0.9482      3332
+                              weighted avg     0.9560    0.9547    0.9536      3332
