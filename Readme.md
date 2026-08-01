@@ -286,8 +286,9 @@ Image Preprocessing   Sensor Preprocessing
       │                     │
       └──────────┬──────────┘
                  ▼
- Disease Prediction &
- Smart Recommendation
+        Disease Prediction 
+                 &
+        Smart Recommendation
                  │
                  ▼
          Results Dashboard
@@ -334,38 +335,91 @@ Display Results
 #  Project Structure
 
 ```
-IoT-Based-Crop-Disease-Detection-System/
-│
-├── backend/
-│   ├── app.py
-│   ├── routes/
-│   ├── models/
-│   ├── utils/
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── css/
-│   ├── js/
-│   ├── templates/
-│   └── assets/
+IoT_Based_Crop_Disease_Detection_System/
 │
 ├── datasets/
-│   ├── PlantVillage/
-│   └── Sensor_Dataset/
+│   ├── image_dataset/
+│   │   └── README.md    # Hugging Face dataset link
+│   │
+│   └── sensor_dataset/
+│       ├── sensor_data.csv
+│       └── README.md
 │
-├── ml_model/
+├── notebooks/
+│   ├── 01_sensor_data_EDA.ipynb
+│   ├── 02_sensor_data_preprocessing.ipynb
+│   ├── 03_sensor_model_training.ipynb
+│   ├── 04_image_data_EDA.ipynb
+│   └── 05_image_model_training.ipynb
 │
-├── cnn_model/
+├── src/
+│   ├── image_classification/
+│   │   ├── model.py
+│   │   ├── evaluate.py
+│   │   └── predict.py
+│   │
+│   ├── sensor_prediction/
+│   │   ├── preprocess.py
+│   │   ├── train.py
+│   │   ├── evaluate.py
+│   │   └── predict.py
+│   │
+│   └── docs/
+│       ├── screenshots/
+│       │   ├── image_data_screenshots
+│       │   └── sensor_data_screenshots
+|       |
+│       ├──classification_report.txt
+│       ├── confusion_matrix.png
+│       ├── draw.tldr # use tldr extension to see the diagram in vscode 
+│       └── architecture_diagram.png  # under process of being created
+|
+├── models/
+│   ├── cnn/
+│   │   ├── mobilenetv3_best.pth
+│   │   └── class_names.json
+│   │
+│   └── ml/
+│       ├── random_forest.pkl
+│       ├── xgboost.pkl
+│       ├── lightgbm.pkl
+│       └── best_model.pkl
+│
+├── web_app/
+│   ├── app.py
+│   ├── routes.py
+│   ├── templates/
+│   │   ├── index.html
+│   │   └── result.html
+│   │
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── images/
+│   │   └── uploads/
+│   │
+│   └── requirements.txt
 │
 ├── arduino/
+│   ├── crop_disease_detection.ino
+│   └── sensors.md
 │
-├── static/
+├── docs/
+│   ├── architecture.png
+│   ├── workflow.png
+│   ├── dataset_description.md
+│   └── screenshots/
 │
-├── uploads/
+├── tests/
+│   ├── test_cnn.py
+│   ├── test_ml.py
+│   └── test_api.py
 │
+├── requirements.txt
 ├── README.md
-│
-└── LICENSE
+├── LICENSE
+├── .gitignore
+└── .env.example
 ```
 
 ---
