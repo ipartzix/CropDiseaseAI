@@ -1,0 +1,17 @@
+name: CropDisease_AI
+
+channels:
+  - pytorch
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pytorch
+  - torchvision
+  - cpuonly
+  - numpy
+  - pillow
+  - pip
+
+  - pip:
+      - opencv-python
