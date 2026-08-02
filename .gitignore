@@ -23,3 +23,8 @@ env/
 # OS
 Thumbs.db
 .DS_Store
+# Ignore captured camera images
+images/*
+
+# Keep the images folder structure
+!images/.gitkeep
