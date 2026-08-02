@@ -424,6 +424,87 @@ IoT_Based_Crop_Disease_Detection_System/
 
 ---
 
+# 🚀 Getting Started
+
+## Prerequisites
+
+Install one of the following:
+
+- **Miniconda** (Recommended)
+- **Anaconda**
+
+> **Why Miniconda?**
+> Miniconda is lightweight and installs only the dependencies required by this project, reducing disk usage and installation time.
+
+---
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/ipartzix/IoT_Based_Crop_Disease_Detection_System.git
+cd IoT_Based_Crop_Disease_Detection_System
+```
+
+---
+
+## Create the Conda Environment
+
+Create the environment from the provided `environment.yml` file:
+
+```bash
+conda env create -f environment.yml
+```
+
+This will install all required dependencies, including:
+
+- Python 3.11
+- PyTorch (CPU)
+- TorchVision
+- NumPy
+- Pillow
+- OpenCV
+
+---
+
+## Activate the Environment
+
+```bash
+conda activate CropDisease_AI
+```
+
+---
+
+## Run the Image Classification Application
+
+From the project root directory:
+
+```bash
+python -m src.main
+```
+
+---
+
+## Deactivate the Environment
+
+```bash
+conda deactivate
+```
+
+---
+
+## Environment Size
+
+Approximate disk usage after installation:
+
+| Component | Size |
+|-----------|------:|
+| Miniconda | ~100–150 MB |
+| Project Environment | ~700 MB–1 GB |
+
+> The total size depends on your operating system and package versions.
+
+---
+
 #  Future Improvements
 
 - Mobile Application
