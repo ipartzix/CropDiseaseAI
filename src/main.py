@@ -1,140 +1,135 @@
-# ==============================================================================
-# IoT Based Crop Disease Detection System
-# EfficientNet-B0 Crop Disease Prediction
 # src/main.py
-# ==============================================================================
 
 
 # ==============================================================================
-# Imports
+# Local Application Imports
 # ==============================================================================
 
+from src.input.file_picker import select_image
+from src.input.camera import capture_image
 
-# ==============================================================================
-# Standard Library Imports
-# ==============================================================================
-
-import json
-from pathlib import Path
-
-
-# ==============================================================================
-# Third-Party Library Imports
-# ==============================================================================
-
-import torch
-import torch.nn as nn
-from torchvision import models, transforms
-from PIL import Image
+from src.model_loader import load_model
+from src.preprocess import preprocess_image
+from src.predictor import predict
+from src.postprocess import process_predictions
 
 
 # ==============================================================================
-# Project Paths
+# Main Workflow
 # ==============================================================================
 
-MODEL_PATH = Path(r"C:\IOT_Based_Crop_Disease_Detection_System_For_Smart_Agriculture\models\cnn\efficientnet_b0_best.pth")
-CLASS_JSON = Path(r"C:\IOT_Based_Crop_Disease_Detection_System_For_Smart_Agriculture\models\cnn\class_names.json")
-IMAGE_PATH = Path(r"C:\IOT_Based_Crop_Disease_Detection_System_For_Smart_Agriculture\images")
+def main():
+
+    print("====================================")
+    print(" Crop Disease Detection System")
+    print("====================================")
+
+
+    # --------------------------------------------------------------------------
+    # Step 1: Select Image Source
+    # --------------------------------------------------------------------------
+
+    choice = input(
+        "\n1. Upload Image from local machine"
+        "\n2. Capture Image using Camera"
+        "\nChoose option: "
+    )
+
+
+    if choice == "1":
+
+        image_path = select_image()
+
+
+    elif choice == "2":
+
+        image_path = capture_image()
+
+
+    else:
+
+        print("Invalid option")
+        return
+
+
+    if image_path is None:
+
+        print("No image selected.")
+        return
+
+
+
+    # --------------------------------------------------------------------------
+    # Step 2: Load Model
+    # --------------------------------------------------------------------------
+
+    print("\nLoading model...")
+
+    model, class_names = load_model()
+
+
+
+    # --------------------------------------------------------------------------
+    # Step 3: Preprocess Image
+    # --------------------------------------------------------------------------
+
+    print("Preprocessing image...")
+
+    image_tensor = preprocess_image(
+        image_path
+    )
+
+
+
+    # --------------------------------------------------------------------------
+    # Step 4: Prediction
+    # --------------------------------------------------------------------------
+
+    print("Running prediction...")
+
+    outputs = predict(
+        model,
+        image_tensor
+    )
+
+
+
+    # --------------------------------------------------------------------------
+    # Step 5: Postprocess Result
+    # --------------------------------------------------------------------------
+
+    result = process_predictions(
+        outputs,
+        class_names
+    )
+
+
+    print("\nPrediction Result")
+    print("----------------")
+
+    print(
+        f"Disease : {result['prediction']}"
+    )
+
+    print(
+        f"Confidence : {result['confidence']:.2f}%"
+    )
+
+
+    print("\nTop Predictions:")
+
+    for item in result["top_predictions"]:
+
+        print(
+            f"{item['class']} : {item['confidence']:.2f}%"
+        )
+
 
 
 # ==============================================================================
-# Model Configuration
+# Entry Point
 # ==============================================================================
 
-MODEL_NAME = "EfficientNet-B0"
-IMAGE_SIZE = (224, 224)
+if __name__ == "__main__":
 
-
-# ==============================================================================
-# Device Configuration
-# ==============================================================================
-
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
-# ==============================================================================
-# Load Class Names
-# ==============================================================================
-
-with open(CLASS_JSON, "r") as f:
-    class_names = json.load(f)
-
-NUM_CLASSES = len(class_names)
-
-
-# ==============================================================================
-# Load Model
-# ==============================================================================
-
-model = models.efficientnet_b0(weights=None)
-
-model.classifier = nn.Sequential(
-    nn.Dropout(0.2),
-    nn.Linear(model.classifier[1].in_features, NUM_CLASSES)
-)
-
-model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
-model.to(DEVICE)
-model.eval()
-
-
-# ==============================================================================
-# Image Preprocessing
-# ==============================================================================
-
-transform = transforms.Compose([
-    transforms.Resize(IMAGE_SIZE),
-    transforms.ToTensor(),
-    transforms.Normalize(
-        mean=[0.485, 0.456, 0.406],
-        std=[0.229, 0.224, 0.225]
-    ),
-])
-
-
-# ==============================================================================
-# Load Image
-# ==============================================================================
-
-image = Image.open(IMAGE_PATH).convert("RGB")
-input_tensor = transform(image).unsqueeze(0).to(DEVICE)
-
-
-# ==============================================================================
-# Model Prediction
-# ==============================================================================
-
-with torch.no_grad():
-    outputs = model(input_tensor)
-    probabilities = torch.softmax(outputs, dim=1)[0]
-
-top5_prob, top5_idx = torch.topk(probabilities, 5)
-
-
-# ==============================================================================
-# Display Top-5 Predictions
-# ==============================================================================
-
-print("\nTop 5 Predictions:\n")
-
-for prob, idx in zip(top5_prob, top5_idx):
-    print(f"{class_names[idx.item()]:40} {prob.item()*100:.2f}%")
-
-
-# ==============================================================================
-# Best Prediction
-# ==============================================================================
-
-predicted_class = class_names[top5_idx[0].item()]
-confidence = top5_prob[0].item() * 100
-
-
-# ==============================================================================
-# Display Result
-# ==============================================================================
-
-print("=" * 45)
-print(f"Image      : {IMAGE_PATH.name}")
-print(f"Prediction : {predicted_class}")
-print(f"Confidence : {confidence:.2f}%")
-print("=" * 45)
+    main()
