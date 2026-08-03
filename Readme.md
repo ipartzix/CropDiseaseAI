@@ -597,6 +597,8 @@ The datasets used in this project belong to their respective owners and are used
   </tr>
 </table>
 
+---
+
 <table width="100%">
   <tr>
     <td>
@@ -618,6 +620,7 @@ The datasets used in this project belong to their respective owners and are used
 - Built and trained a **CNN-based EfficientNet-B0** model for image classification.
 - Performed data preprocessing, data augmentation, model training, validation, and performance evaluation.
 - Integrated the trained deep learning model into the application for inference and prediction.
+- Designed and implemented the **main source pipeline**, enabling the entire application workflow—from image input to prediction—to run seamlessly.
 
    </td>
   </tr>
