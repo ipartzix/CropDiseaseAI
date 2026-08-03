@@ -568,3 +568,17 @@ It motivates us to continue developing AI-powered solutions for smart agricultur
 This project is developed for **academic and research purposes**.
 
 The datasets used in this project belong to their respective owners and are used only for educational and research purposes.
+
+## 👥 Contributors
+
+### **Partha Paul**
+- Designed and developed the **Deep Learning** module.
+- Built and trained a **CNN-based EfficientNet-B0** model for image classification.
+- Performed data preprocessing, data augmentation, model training, validation, and performance evaluation.
+- Integrated the trained deep learning model into the application for inference and prediction.
+
+### **Biswajit Sarkar**
+- Developed the **Web Application** and **User Interface (UI)**.
+- Designed and implemented a responsive frontend for the application.
+- Integrated the frontend with the backend and the deep learning model.
+- Ensured smooth interaction between the user interface and the prediction pipeline.
