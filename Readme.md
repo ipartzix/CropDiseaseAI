@@ -571,14 +571,54 @@ The datasets used in this project belong to their respective owners and are used
 
 ## 👥 Contributors
 
-### **Partha Paul**
+<table width="100%">
+  <tr>
+    <td>
+      <h3>Biswajit Sarkar</h3>
+    </td>
+    <td align="right">
+      <a href="https://github.com/biswajit-sarkar-007">
+        <img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/biswajit007?utm_source=share_via&utm_content=profile&utm_medium=member_android">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+
+- Developed the **Web Application** and designed a responsive **User Interface (UI)**.
+- Implemented the frontend using modern web development practices.
+- Integrated the frontend with the backend and the deep learning model.
+- Ensured seamless interaction between the user interface and the prediction pipeline.
+
+   </td>
+  </tr>
+</table>
+
+<table width="100%">
+  <tr>
+    <td>
+      <h3>Partha Paul</h3>
+    </td>
+    <td align="right">
+      <a href="https://github.com/ipartzix">
+        <img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/ipartzix">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+
 - Designed and developed the **Deep Learning** module.
 - Built and trained a **CNN-based EfficientNet-B0** model for image classification.
 - Performed data preprocessing, data augmentation, model training, validation, and performance evaluation.
 - Integrated the trained deep learning model into the application for inference and prediction.
 
-### **Biswajit Sarkar**
-- Developed the **Web Application** and **User Interface (UI)**.
-- Designed and implemented a responsive frontend for the application.
-- Integrated the frontend with the backend and the deep learning model.
-- Ensured smooth interaction between the user interface and the prediction pipeline.
+   </td>
+  </tr>
+</table>
