@@ -854,5 +854,3 @@ Designed and implemented the **main source pipeline**, connecting image input, p
 **Input:** Crop leaf image
 
 **Output:** Crop disease class + prediction confidence
-
-**IoT Hardware:** Removed from the current project scope
