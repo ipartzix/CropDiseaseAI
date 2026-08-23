@@ -1,472 +1,620 @@
-# 🌱 IoT Based Crop Disease Detection System for Smart Agriculture
+# CropDiseaseAI
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10-blue?logo=python">
-  <img src="https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask">
-  <img src="https://img.shields.io/badge/TensorFlow-Deep%20Learning-orange?logo=tensorflow">
-  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?logo=scikitlearn">
-  <img src="https://img.shields.io/badge/Arduino-IoT-00979D?logo=arduino">
+  <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python">
+  <img src="https://img.shields.io/badge/PyTorch-Deep%20Learning-ee4c2c?logo=pytorch">
+  <img src="https://img.shields.io/badge/TorchVision-Computer%20Vision-orange?logo=pytorch">
   <img src="https://img.shields.io/badge/OpenCV-Image%20Processing-green?logo=opencv">
+  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?logo=scikitlearn">
 </p>
 
 ---
 
-#  Project Overview
+# Project Overview
 
-The **IoT Based Crop Disease Detection System for Smart Agriculture** is an AI-powered smart farming solution that integrates **Internet of Things (IoT), Machine Learning, and Deep Learning** to monitor crop health and detect plant diseases at an early stage.
+**CropDiseaseAI** is a deep-learning-based crop disease detection system designed to identify diseases from crop leaf images.
 
-The system continuously collects real-time environmental data using IoT sensors connected to an **Arduino Uno**, including:
+The system accepts a leaf image either from an existing image file or through a webcam. The image is then passed through an image preprocessing pipeline before being analyzed by a trained **EfficientNet-B0** image classification model.
 
-- 🌡 Temperature
-- 💧 Humidity
-- 🌱 Soil Moisture
+The model classifies the image into one of the supported crop disease categories and returns the predicted class along with a confidence score.
 
-This sensor data is analyzed using **Machine Learning models** such as:
+The project focuses specifically on **computer vision and deep learning for crop disease classification**. The previous IoT hardware and environmental sensor components have been removed from the current version of the project.
 
-- Random Forest
-- XGBoost
-- LightGBM
+### Current Pipeline
 
-to evaluate crop health and predict disease risk based on environmental conditions.
-
-At the same time, a **USB Camera/Webcam** captures images of crop leaves. These images are processed using a **Convolutional Neural Network (CNN)** trained on the **PlantVillage Dataset** to identify crop diseases and classify plants as **Healthy** or **Diseased** along with a prediction confidence score.
-
-By combining **environmental sensor analysis** with **image-based disease detection**, the system provides farmers with accurate crop monitoring, early disease diagnosis, and intelligent recommendations for precision agriculture.
-
----
-
-#  Objectives
-
-- Detect crop diseases at an early stage
-- Monitor environmental conditions in real time
-- Improve farming decisions using Artificial Intelligence
-- Reduce crop losses
-- Increase agricultural productivity
-- Promote precision farming
-
----
-
-#  Key Features
-
- Real-time Sensor Monitoring
-
-- Temperature Monitoring
-- Humidity Monitoring
-- Soil Moisture Monitoring
-
- AI-Based Disease Detection
-
-- CNN-based leaf image classification
-- Disease identification
-- Confidence score prediction
-
- Machine Learning Prediction
-
-- Environmental stress analysis
-- Disease risk prediction
-- Crop health assessment
-
- Smart Dashboard
-
-- Live sensor values
-- Uploaded leaf image
-- Disease prediction
-- Risk probability
-- Health status
-- Farming recommendation
+```text
+Leaf Image
+    │
+    ▼
+Image Input
+    │
+    ├── Existing Image
+    │
+    └── Webcam Capture
+    │
+    ▼
+Image Preprocessing
+    │
+    ▼
+EfficientNet-B0
+    │
+    ▼
+Disease Classification
+    │
+    ▼
+Prediction + Confidence
+    │
+    ▼
+Result Display
+```
 
 ---
 
-# 🛠 Tech Stack
+# Objectives
 
-## Programming Languages
+* Detect crop diseases from leaf images
+* Classify crop diseases using deep learning
+* Provide prediction confidence
+* Build a modular image-classification pipeline
+* Support both existing image files and webcam input
+* Develop a practical AI-based crop health analysis system
+* Apply computer vision and deep learning techniques to agricultural problems
 
-- Python
-- C/C++ (Arduino)
+---
 
-## Machine Learning
+# Key Features
 
-- Scikit-Learn
-- Random Forest
-- XGBoost
-- LightGBM
+## AI-Based Disease Detection
+
+* Deep-learning-based image classification
+* EfficientNet-B0 architecture
+* Multiple crop and disease classes
+* Healthy and diseased crop classification
+* Prediction confidence score
+
+## Image Input
+
+The system supports two image-input methods:
+
+### Existing Image
+
+Users can select an image already stored on their computer.
+
+```text
+File Explorer
+      │
+      ▼
+Select Leaf Image
+      │
+      ▼
+Image Path
+```
+
+### Webcam
+
+Users can capture a new crop-leaf image using a webcam.
+
+```text
+Webcam
+   │
+   ▼
+Live Preview
+   │
+   ▼
+Capture Image
+   │
+   ▼
+Save Image
+   │
+   ▼
+Prediction
+```
+
+## Image Processing
+
+* Image loading
+* Resizing
+* Tensor conversion
+* Normalization
+* Training-time data augmentation
+* Model-ready preprocessing
+
+## Prediction
+
+The system provides:
+
+* Predicted crop/disease class
+* Confidence score
+* Classification result
+
+---
+
+# Tech Stack
+
+## Programming Language
+
+* Python 3.11
 
 ## Deep Learning
 
-- TensorFlow
-- Keras
-- CNN (Convolutional Neural Network)
+* PyTorch
+* TorchVision
+* EfficientNet-B0
+* Convolutional Neural Networks
 
-## IoT
+## Computer Vision
 
-- Arduino Uno
-- Soil Moisture Sensor
-- DHT11 / DHT22 Sensor
-- USB Webcam
+* OpenCV
+* Pillow
 
-## Backend
+## Machine Learning Utilities
 
-- Flask / FastAPI
+* NumPy
+* Pandas
+* Scikit-Learn
+* Matplotlib
+* Seaborn
 
-## Frontend
+## Application
 
-- HTML
-- CSS
-- JavaScript
-- Bootstrap
-
-## Libraries
-
-- OpenCV
-- NumPy
-- Pandas
-- Matplotlib
-- Seaborn
-- Scikit-Learn
-- TensorFlow
-- Joblib
+* Python-based local application
+* Modular inference pipeline
 
 ---
 
-#  AI Models Used
+# AI Model
 
-## Machine Learning Model
+## EfficientNet-B0
 
-Used for analyzing environmental sensor data.
+The project uses **EfficientNet-B0** as the primary image classification model.
 
-Algorithms:
+EfficientNet-B0 provides a good balance between:
 
-- Random Forest
-- XGBoost
-- LightGBM
+* Model size
+* Computational cost
+* Classification performance
+* Inference efficiency
+
+The model is trained to classify crop leaf images into the supported disease categories.
 
 ### Input
 
-- Temperature
-- Humidity
-- Soil Moisture
+```text
+RGB Leaf Image
+```
+
+The image is transformed into a normalized PyTorch tensor suitable for the model.
+
+### Model Input Shape
+
+```text
+(3, 224, 224)
+```
 
 ### Output
 
-- Crop Health
-- Disease Risk
-- Risk Probability
+```text
+Predicted Class
++
+Confidence Score
+```
 
 ---
 
-## Deep Learning Model
-
-CNN-based model trained on crop leaf images.
-
-### Input
-
-Leaf Image
-
-### Output
-
-- Disease Name
-- Healthy/Diseased
-- Confidence Score
----
 # Dataset Information
 
-This project utilizes two publicly available datasets to train the Machine Learning and Deep Learning models.
+The deep-learning model is trained using a custom crop disease image dataset created by combining and cleaning images from publicly available datasets.
 
----
+## Original Data Sources
 
-## 1. Crop Health & Environmental Stress Dataset
+### PlantVillage Dataset
 
-This dataset is used to train the **Machine Learning** model for crop health prediction based on environmental conditions.
-
-### Features
-
-- Temperature
-- Humidity
-- Soil Moisture
-- Crop Health Label (Healthy / Unhealthy)
-
-### Dataset Statistics
-
-- **Total Records:** 212,019
-- **Task:** Binary Classification (Healthy / Unhealthy)
-
-### Source
-
-**Dataset Name:** Crop Health & Environmental Stress Dataset
-
-https://www.kaggle.com/datasets/datasetengineer/crop-health-and-environmental-stress-dataset
-
----
-
-## 2. Custom Crop Disease Image Dataset
-
-This dataset is used to train the **Deep Learning (CNN)** model for crop disease classification.
-
-The final dataset was created by combining and cleaning images collected from multiple publicly available datasets.
-
-### Original Data Sources
-
-#### • PlantVillage Dataset
-
-Dataset Link:
+Dataset repository:
 
 https://github.com/spMohanty/PlantVillage-Dataset
 
-#### • 15 Crop and 45 Disease and Healthy Dataset (Mendeley Data)
+### 15 Crop and 45 Disease and Healthy Dataset
 
-Dataset Link:
+Mendeley Data:
 
 https://data.mendeley.com/datasets/8fr7grr73p/1
 
 ---
 
-### Final Dataset Statistics
+# Final Dataset
 
-| Crop | Classes | Images |
-|------|---------:|-------:|
-| Corn (Maize) | 6 | 6,617 |
-| Potato | 3 | 2,988 |
-| Rice | 3 | 3,637 |
-| Tomato | 4 | 6,627 |
-| Wheat | 3 | 2,820 |
+The final dataset contains five crop categories.
 
-### Overall Summary
+| Crop         | Classes |     Images |
+| ------------ | ------: | ---------: |
+| Corn (Maize) |       6 |      6,617 |
+| Potato       |       3 |      2,988 |
+| Rice         |       3 |      3,637 |
+| Tomato       |       4 |      6,627 |
+| Wheat        |       3 |      2,820 |
+| **Total**    |  **19** | **22,689** |
 
-- **Total Crops:** 5
-- **Total Classes:** 19
-- **Total Images:** 22,689
-- **Image Format:** JPG / JPEG
-- **Dataset Size:** ~1.36 GB
+### Dataset Summary
 
-### Train / Validation / Test Split
+* **Total Crops:** 5
+* **Total Classes:** 19
+* **Total Images:** 22,689
+* **Image Format:** JPG / JPEG
+* **Dataset Size:** ~1.36 GB
 
-A **stratified split** is used to maintain the class distribution across all categories.
+---
 
-- **Training Set:** 70%
-- **Validation Set:** 15%
-- **Testing Set:** 15%
+# Dataset Split
 
-### Image Preprocessing
+A stratified dataset split is used to preserve class distribution across the different subsets.
 
-During model training, images are processed dynamically using **PyTorch Torchvision** transforms.
+| Dataset    | Percentage |
+| ---------- | ---------: |
+| Training   |        70% |
+| Validation |        15% |
+| Testing    |        15% |
 
-- Automatic image resizing
-- Image normalization
-- Data augmentation (training set only)
-- Original images remain unchanged
-#  System Architecture
+The split is performed while maintaining the distribution of the different classes.
 
+---
+
+# Image Preprocessing
+
+The training pipeline applies image transformations dynamically using **PyTorch TorchVision**.
+
+The training transformation pipeline includes:
+
+* Image resizing/cropping
+* Random horizontal flipping
+* Random rotation
+* Tensor conversion
+* Image normalization
+
+The resulting image is converted into a normalized `float32` PyTorch tensor with the required model input dimensions.
+
+### Training Pipeline
+
+```text
+Raw JPG/JPEG RGB Image
+          │
+          ▼
+Random Crop / Resize
+          │
+          ▼
+Random Horizontal Flip
+          │
+          ▼
+Random Rotation
+          │
+          ▼
+To Tensor
+          │
+          ▼
+Normalization
+          │
+          ▼
+Tensor (3, 224, 224)
+          │
+          ▼
+EfficientNet-B0
 ```
-                     User (Farmer)
+
+Validation and testing use deterministic preprocessing without training-time random augmentation.
+
+---
+
+# System Architecture
+
+```text
+                         User
                            │
                            ▼
-                    Web Application
+                    Image Input Layer
                            │
-        ┌──────────────────┴──────────────────┐
-        │                                     │
-        ▼                                     ▼
- USB Camera/Webcam                      Arduino Uno
- (Leaf Image)                           │
-                                        │
-                 ┌──────────────────────┴────────────────────┐
-                 │                                            │
-          DHT11/DHT22 Sensor                      Soil Moisture Sensor
-       (Temperature & Humidity)
-                 │
-                 ▼
-          Flask / FastAPI Backend
-                 │
-      ┌──────────┴──────────┐
-      │                     │
-      ▼                     ▼
-Image Preprocessing   Sensor Preprocessing
-      │                     │
-      ▼                     ▼
- CNN Model          Random Forest/XGBoost
-      │                     │
-      └──────────┬──────────┘
-                 ▼
-        Disease Prediction 
-                 &
-        Smart Recommendation
-                 │
-                 ▼
-         Results Dashboard
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+       Existing Image              Webcam
+              │                         │
+              └────────────┬────────────┘
+                           │
+                           ▼
+                    Image Path
+                           │
+                           ▼
+                  Image Preprocessing
+                           │
+                           ▼
+                  PyTorch Tensor
+                    (3, 224, 224)
+                           │
+                           ▼
+                    EfficientNet-B0
+                           │
+                           ▼
+                  Class Probabilities
+                           │
+                           ▼
+                Post-processing
+                           │
+                           ▼
+             Prediction + Confidence
+                           │
+                           ▼
+                    Result Display
 ```
 
 ---
 
-#  Project Workflow
+# Project Workflow
 
 ```text
 Start
-   │
-   ▼
-Collect Sensor Data
-   │
-   ▼
-Capture Leaf Image
-   │
-   ▼
-Data Preprocessing
-   │
-   ├──────────────┐
-   │              │
-   ▼              ▼
-Machine       CNN Model
-Learning
-   │              │
-   └──────┬───────┘
-          ▼
-Combine Predictions
+  │
+  ▼
+Choose Input Method
+  │
+  ├───────────────┐
+  │               │
+  ▼               ▼
+Select Image    Open Webcam
+  │               │
+  │               ▼
+  │          Capture Image
+  │               │
+  └───────┬───────┘
           │
           ▼
-Disease Detection
+      Image Path
           │
           ▼
-Generate Recommendation
+ Image Preprocessing
           │
           ▼
-Display Results
+   EfficientNet-B0
+          │
+          ▼
+  Disease Prediction
+          │
+          ▼
+ Confidence Score
+          │
+          ▼
+   Display Result
+          │
+          ▼
+         End
 ```
 
 ---
 
-#  Project Structure
+# Project Structure
 
-```
-IoT_Based_Crop_Disease_Detection_System/
+```text
+CropDiseaseAI/
 │
 ├── datasets/
-│   ├── image_dataset/
-│   │   └── README.md    # Hugging Face dataset link
-│   │
-│   └── sensor_dataset/
-│       ├── sensor_data.csv
+│   └── image_dataset/
 │       └── README.md
 │
 ├── notebooks/
-│   ├── 01_sensor_data_EDA.ipynb
-│   ├── 02_sensor_data_preprocessing.ipynb
-│   ├── 03_sensor_model_training.ipynb
-│   ├── 04_image_data_EDA.ipynb
-│   └── 05_image_model_training.ipynb
+│   ├── 01_image_data_EDA.ipynb
+│   └── 02_image_model_training.ipynb
 │
 ├── src/
-│   ├── image_classification/
-│   │   ├── model.py
-│   │   ├── evaluate.py
-│   │   └── predict.py
-│   │
-│   ├── sensor_prediction/
-│   │   ├── preprocess.py
-│   │   ├── train.py
-│   │   ├── evaluate.py
-│   │   └── predict.py
-│   │
-│   └── docs/
-│       ├── screenshots/
-│       │   ├── image_data_screenshots
-│       │   └── sensor_data_screenshots
-|       |
-│       ├──classification_report.txt
-│       ├── confusion_matrix.png
-│       ├── draw.tldr # use tldr extension to see the diagram in vscode 
-│       └── architecture_diagram.png  # under process of being created
-|
+│   ├── main.py
+│   ├── config.py
+│   ├── file_picker.py
+│   ├── camera.py
+│   ├── preprocess.py
+│   ├── predictor.py
+│   └── postprocess.py
+│
 ├── models/
-│   ├── cnn/
-│   │   ├── mobilenetv3_best.pth
-│   │   └── class_names.json
-│   │
-│   └── ml/
-│       ├── random_forest.pkl
-│       ├── xgboost.pkl
-│       ├── lightgbm.pkl
-│       └── best_model.pkl
-│
-├── web_app/
-│   ├── app.py
-│   ├── routes.py
-│   ├── templates/
-│   │   ├── index.html
-│   │   └── result.html
-│   │
-│   ├── static/
-│   │   ├── css/
-│   │   ├── js/
-│   │   ├── images/
-│   │   └── uploads/
-│   │
-│   └── requirements.txt
-│
-├── arduino/
-│   ├── crop_disease_detection.ino
-│   └── sensors.md
+│   └── cnn/
+│       ├── efficientnet_b0_best.pth
+│       └── class_names.json
 │
 ├── docs/
 │   ├── architecture.png
 │   ├── workflow.png
 │   ├── dataset_description.md
+│   ├── classification_report.txt
+│   ├── confusion_matrix.png
+│   ├── draw.tldr
 │   └── screenshots/
 │
-├── tests/
-│   ├── test_cnn.py
-│   ├── test_ml.py
-│   └── test_api.py
+├── images/
+│   └── captured_image.jpg
 │
+├── tests/
+│   └── test_cnn.py
+│
+├── environment.yml
 ├── requirements.txt
 ├── README.md
 ├── LICENSE
-├── .gitignore
-└── .env.example
+└── .gitignore
 ```
 
 ---
 
-# 🚀 Getting Started
+# Module Responsibilities
+
+The application follows a modular pipeline where each component has a specific responsibility.
+
+## `config.py`
+
+Stores project configuration values such as:
+
+* Model path
+* Class names path
+* Image size
+* Device
+* Normalization values
+* Prediction settings
+
+It does not perform the prediction itself.
+
+---
+
+## `file_picker.py`
+
+Allows the user to select an existing image from the computer.
+
+```text
+File Explorer
+      │
+      ▼
+Select Image
+      │
+      ▼
+Return Image Path
+```
+
+The module only handles image selection.
+
+---
+
+## `camera.py`
+
+Handles webcam-based image capture.
+
+```text
+Webcam
+   │
+   ▼
+Live Preview
+   │
+   ▼
+Capture
+   │
+   ├── Save
+   ├── Retake
+   └── Cancel
+```
+
+The module returns the path of the captured image.
+
+---
+
+## `preprocess.py`
+
+Responsible for preparing the selected image for the model.
+
+```text
+Image
+  │
+  ▼
+Resize
+  │
+  ▼
+Tensor Conversion
+  │
+  ▼
+Normalization
+  │
+  ▼
+Model Input
+```
+
+---
+
+## `predictor.py`
+
+Responsible for:
+
+* Loading the trained model
+* Running inference
+* Generating class probabilities
+* Obtaining the predicted class
+
+---
+
+## `postprocess.py`
+
+Responsible for converting the raw model output into a user-readable result.
+
+```text
+Model Output
+     │
+     ▼
+Predicted Class
+     │
+     ▼
+Confidence
+     │
+     ▼
+Readable Result
+```
+
+---
+
+## `main.py`
+
+Acts as the main application pipeline.
+
+```text
+Input
+  ↓
+Image Selection / Camera
+  ↓
+Preprocessing
+  ↓
+Prediction
+  ↓
+Post-processing
+  ↓
+Result
+```
+
+The modular design allows both file-based and webcam-based inputs to use the same downstream prediction pipeline.
+
+---
+
+# Getting Started
 
 ## Prerequisites
 
 Install one of the following:
 
-- **Miniconda** (Recommended)
-- **Anaconda**
+* **Miniconda** — Recommended
+* **Anaconda**
 
-> **Why Miniconda?**
-> Miniconda is lightweight and installs only the dependencies required by this project, reducing disk usage and installation time.
+Miniconda is recommended because it provides a lightweight Conda installation without unnecessary packages.
 
 ---
 
-## Clone the Repository
+# Clone the Repository
 
 ```bash
-git clone https://github.com/ipartzix/IoT_Based_Crop_Disease_Detection_System.git
-cd IoT_Based_Crop_Disease_Detection_System
+git clone https://github.com/ipartzix/CropDiseaseAI.git
+cd CropDiseaseAI
 ```
 
 ---
 
-## Create the Conda Environment
+# Create the Conda Environment
 
-Create the environment from the provided `environment.yml` file:
+The project provides an `environment.yml` file containing the required dependencies.
 
 ```bash
 conda env create -f environment.yml
 ```
 
-This will install all required dependencies, including:
+The environment installs the required packages, including:
 
-- Python 3.11
-- PyTorch (CPU)
-- TorchVision
-- NumPy
-- Pillow
-- OpenCV
+* Python
+* PyTorch
+* TorchVision
+* NumPy
+* Pillow
+* OpenCV
+* Other project dependencies
 
 ---
 
-## Activate the Environment
+# Activate the Environment
 
 ```bash
 conda activate CropDisease_AI
@@ -474,7 +622,7 @@ conda activate CropDisease_AI
 
 ---
 
-## Run the Image Classification Application
+# Run the Application
 
 From the project root directory:
 
@@ -482,9 +630,15 @@ From the project root directory:
 python -m src.main
 ```
 
+The application will start the image classification workflow.
+
+You can then provide an image through the supported input method.
+
 ---
 
-## Deactivate the Environment
+# Deactivate the Environment
+
+After finishing:
 
 ```bash
 conda deactivate
@@ -492,136 +646,213 @@ conda deactivate
 
 ---
 
-## Environment Size
+# Model Files
 
-Approximate disk usage after installation:
+The trained model is stored under:
 
-| Component | Size |
-|-----------|------:|
-| Miniconda | ~100–150 MB |
-| Project Environment | ~700 MB–1 GB |
+```text
+models/
+└── cnn/
+    ├── efficientnet_b0_best.pth
+    └── class_names.json
+```
 
-> The total size depends on your operating system and package versions.
+### `efficientnet_b0_best.pth`
 
----
+Contains the trained EfficientNet-B0 model weights.
 
-#  Future Improvements
+### `class_names.json`
 
-- Mobile Application
-- Cloud Deployment
-- SMS Alert System
-- Fertilizer Recommendation
-- Pest Detection
-- Weather Forecast Integration
-- Multi-language Support
-- GPS-based Farm Monitoring
+Contains the class-name mapping required to convert model output indices into disease labels.
 
 ---
 
-#  Expected Outcomes
+# Model Inference
 
-- Early Disease Detection
-- Improved Crop Yield
-- Reduced Farming Costs
-- Smart Decision Support
-- Sustainable Agriculture
-- Precision Farming
+The inference pipeline follows:
+
+```text
+Input Image
+     │
+     ▼
+Load Image
+     │
+     ▼
+Preprocess
+     │
+     ▼
+Convert to Tensor
+     │
+     ▼
+Load EfficientNet-B0
+     │
+     ▼
+Run Inference
+     │
+     ▼
+Softmax Probabilities
+     │
+     ▼
+Select Predicted Class
+     │
+     ▼
+Calculate Confidence
+     │
+     ▼
+Display Result
+```
 
 ---
 
-#  Sample Output
+The project is now focused on:
 
-- Sensor Readings
-- Leaf Image
-- Disease Name
-- Confidence Score
-- Disease Risk
-- Health Status
-- Recommendation
+> **Deep-learning-based crop disease detection from leaf images.**
 
 ---
 
-#  References
+# Future Improvements
 
-### Sensor Dataset
+Potential future improvements include:
 
-https://www.kaggle.com/datasets/datasetengineer/crop-health-and-environmental-stress-dataset
+* Mobile application
+* Cloud deployment
+* REST API
+* Real-time camera inference
+* Model optimization
+* ONNX deployment
+* Edge-device deployment
+* Additional crop classes
+* Additional disease classes
+* Explainable AI using Grad-CAM
+* Multilingual prediction results
+* Disease treatment recommendations
+* Model performance monitoring
+
+---
+
+# Expected Outcomes
+
+The system is designed to provide:
+
+* Automated crop disease classification
+* Fast image-based prediction
+* Prediction confidence
+* A modular deep-learning pipeline
+* Practical computer-vision application for agriculture
+
+---
+
+# References
 
 ### PlantVillage Dataset
 
 https://github.com/spMohanty/PlantVillage-Dataset
 
----
+### 15 Crop and 45 Disease and Healthy Dataset
 
- 
-
-#  Support
-
-If you found this project helpful, consider giving it a ⭐ on GitHub.
-
-It motivates us to continue developing AI-powered solutions for smart agriculture.
+https://data.mendeley.com/datasets/8fr7grr73p/1
 
 ---
 
-##  License
+# Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
+
+---
+
+# License
 
 This project is developed for **academic and research purposes**.
 
-The datasets used in this project belong to their respective owners and are used only for educational and research purposes.
+The datasets used in this project belong to their respective owners and are used according to their respective terms and licenses.
 
-## 👥 Contributors
+---
 
-<table width="100%">
-  <tr>
-    <td>
-      <h3>Biswajit Sarkar</h3>
-    </td>
-    <td align="right">
-      <a href="https://github.com/biswajit-sarkar-007">
-        <img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
-      </a>
-      <a href="https://www.linkedin.com/in/biswajit007?utm_source=share_via&utm_content=profile&utm_medium=member_android">
-        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
+# Contributors
 
-- Developed the **Web Application** and designed a responsive **User Interface (UI)**.
-- Implemented the frontend using modern web development practices.
-- Integrated the frontend with the backend and the deep learning model.
-- Ensured seamless interaction between the user interface and the prediction pipeline.
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+### Biswajit Sarkar
+
+<a href="https://github.com/biswajit-sarkar-007">
+<img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
+</a>
+
+<a href="https://www.linkedin.com/in/biswajit007">
+<img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+</a>
+
+<br><br>
+
+Developed the **Web Application** and designed the responsive **User Interface (UI)**.
+
+Implemented the frontend using modern web development practices.
+
+Integrated the frontend with the backend and deep-learning prediction pipeline.
+
+Ensured seamless interaction between the user interface and the image classification system.
+
+</td>
+
+<td align="center" width="50%">
+
+### Partha Paul
+
+<a href="https://github.com/ipartzix">
+<img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
+</a>
+
+<a href="https://www.linkedin.com/in/ipartzix">
+<img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+</a>
+
+<br><br>
+
+Designed and developed the **Deep Learning** module.
+
+Built and trained the **EfficientNet-B0** model for crop disease image classification.
+
+Performed image preprocessing, data augmentation, model training, validation, and performance evaluation.
+
+Integrated the trained model into the application for inference and prediction.
+
+Designed and implemented the **main source pipeline**, connecting image input, preprocessing, model inference, and result generation.
+
+</td>
+</tr>
+</table>
+
+</div>
+
+
+* Designed and developed the **Deep Learning** module.
+* Built and trained an **EfficientNet-B0** model for crop disease image classification.
+* Performed image preprocessing and data augmentation.
+* Conducted model training, validation, and performance evaluation.
+* Integrated the trained model into the application for inference and prediction.
+* Designed and implemented the **main source pipeline**, connecting image input, preprocessing, model inference, and result generation.
 
    </td>
   </tr>
+
 </table>
 
 ---
 
-<table width="100%">
-  <tr>
-    <td>
-      <h3>Partha Paul</h3>
-    </td>
-    <td align="right">
-      <a href="https://github.com/ipartzix">
-        <img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github" alt="GitHub">
-      </a>
-      <a href="https://www.linkedin.com/in/ipartzix">
-        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
+# Project Status
 
-- Designed and developed the **Deep Learning** module.
-- Built and trained a **CNN-based EfficientNet-B0** model for image classification.
-- Performed data preprocessing, data augmentation, model training, validation, and performance evaluation.
-- Integrated the trained deep learning model into the application for inference and prediction.
-- Designed and implemented the **main source pipeline**, enabling the entire application workflow—from image input to prediction—to run seamlessly.
+**Current Focus:** Deep Learning-based crop disease image classification
 
-   </td>
-  </tr>
-</table>
+**Model:** EfficientNet-B0
+
+**Framework:** PyTorch
+
+**Input:** Crop leaf image
+
+**Output:** Crop disease class + prediction confidence
+
+**IoT Hardware:** Removed from the current project scope
